@@ -6,8 +6,8 @@ import cv2
 import numpy as np
 import webbrowser
 
-face_classifier = cv2.CascadeClassifier(r'C:\Users\shrut\OneDrive\Desktop\Mood-Detection\haarcascade_frontalface_default.xml')
-classifier =load_model(r'C:\Users\shrut\OneDrive\Desktop\Mood-Detection\model.h5')
+face_classifier = cv2.CascadeClassifier(r'./haarcascade_frontalface_default.xml')
+classifier =load_model(r'./model.h5')
 
 emotion_labels = ['Angry','Disgust','Fear','Happy','Neutral', 'Sad', 'Surprise']
 
@@ -15,6 +15,7 @@ cap = cv2.VideoCapture(0)
 
 while True:
     _, frame = cap.read()
+    frame = cv2.flip(frame, 1)
     labels = []
     gray = cv2.cvtColor(frame,cv2.COLOR_BGR2GRAY)
     faces = face_classifier.detectMultiScale(gray)
